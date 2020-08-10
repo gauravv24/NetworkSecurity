@@ -1,0 +1,69 @@
+import java.util.Scanner;
+
+public class ColumnTransposition {
+        public static void main(String[] args) {
+            Scanner sc = new Scanner(System.in);
+            System.out.println("Enter the text");
+            String plaintext = sc.nextLine();
+            System.out.println("Enter the number of rows");
+            int rows = sc.nextInt();
+            System.out.println("Enter the number of columns");
+            int columns = sc.nextInt();
+            System.out.println("You just entered : " + plaintext + " Rows: "+ rows + " Columns: "+ columns);
+
+            char array[][] = new char[rows][columns];
+            int length = plaintext.length();
+            if(length<=rows*columns){
+            
+                int count = 0;
+
+                for(int i=0;i<rows;i++){
+                    for(int j=0;j<columns;j++){
+                        if(!(count<plaintext.length())){
+                            break;
+                        }
+                        array[i][j]= plaintext.charAt(count);
+                        count++;
+                    }
+                }
+
+                for(int i=0;i<rows;i++){
+                    for(int j=0;j<columns;j++){
+                        System.out.print(array[i][j]);
+                    }
+                    System.out.print("\n");
+                }
+
+                int[] order = new int[columns];
+
+                System.out.println("Enter the order of the cipher");
+                for(int i=0;i<columns;i++){
+                    order[i] = sc.nextInt();
+                }
+
+                for(int i=0;i<columns;i++){
+                System.out.println(order[i]);
+                }
+                int col;
+                String cipher= "";
+                
+                for(int i=0;i<columns;i++){ 
+                    col = order[i];
+                    for(int j=0;j<rows;j++){
+                        char c = array[j][col];
+                        if((int)c!=0){
+                            cipher+= c;
+                        }
+                    }
+                }
+                System.out.println(cipher);
+               
+              
+            }
+            else{
+                System.out.println("Invalid dimen for rows and columns");
+            }
+
+            sc.close();
+        }
+}
